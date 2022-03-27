@@ -8,5 +8,5 @@ public interface FollowService {
     List<Follow> findAllFollowerByUserId(Long id);
     void save ( Follow follow);
     void unFollow( Long userI , Long followerId);
-
+    List<Follow> findAllUserByFollowerId(long id);
 }

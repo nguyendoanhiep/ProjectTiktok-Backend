@@ -26,4 +26,11 @@ public class FollowServiceImp implements FollowService {
         Follow follow = followRepo.findFollowByUserIdAndFollowerId(userId,followerId);
         followRepo.delete(follow);
     }
+
+    @Override
+    public List<Follow> findAllUserByFollowerId(long id) {
+        return followRepo.findAllFollowerByUserId(id);
+    }
+
+
 }

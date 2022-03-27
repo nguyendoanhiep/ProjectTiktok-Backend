@@ -113,5 +113,10 @@ public class UserController {
         return new ResponseEntity(userService.search(search), HttpStatus.OK);
     }
 
+    @GetMapping("/show/follow/user/{id}")
+    public ResponseEntity<List<Follow>> findALlUserByFollowerId( @PathVariable  Long id) {
+        return new ResponseEntity(followService.findAllUserByFollowerId(id), HttpStatus.OK);
+    }
+
 
 }
