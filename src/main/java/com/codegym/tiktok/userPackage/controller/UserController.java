@@ -118,5 +118,17 @@ public class UserController {
         return new ResponseEntity(followService.findAllUserByFollowerId(id), HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/posts/{id}")
+    public ResponseEntity deletePost(@PathVariable Long id){
+        postService.delete(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/comment/{id}")
+    public ResponseEntity deleteComment(@PathVariable Long id){
+        commentService.delete(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
 }

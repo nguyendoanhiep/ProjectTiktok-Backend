@@ -13,7 +13,7 @@ public interface UserRepo extends JpaRepository<User , Long> {
 //        @Query( nativeQuery = true,value = "SELECT * FROM tiktok.user join tiktok.posts on user.id = users_id where user.id = :id")
 
 
-        @Query(nativeQuery = true,value = "select * from user u join posts p on p.user_id = u.id where u.name like \"%w%\" or p.content like \"%a%\"")
-        List<User> findUser(@Param("name") String name);
+        @Query(nativeQuery = true,value = "select * from user u join posts p on p.user_id = u.id where u.name like %:name% or p.content like %:content%")
+        List<User> findUser(@Param("name") String name ,@Param("content") String content );
 
 }
