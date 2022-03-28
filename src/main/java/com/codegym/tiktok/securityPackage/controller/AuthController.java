@@ -65,11 +65,11 @@ public class AuthController {
         strRoles.forEach(role -> {
             switch (role) {
                 case "user":
-                    Role adminRole = roleService.findByName(RoleName.USER).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role adminRole = roleService.findByName(RoleName.ROLE_USER).orElseThrow(() -> new RuntimeException("Role not found"));
                     roles.add(adminRole);
                     break;
                 default:
-                    Role userRole = roleService.findByName(RoleName.ADMIN).orElseThrow(() -> new RuntimeException("Role not found"));
+                    Role userRole = roleService.findByName(RoleName.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Role not found"));
                     roles.add(userRole);
             }
         });

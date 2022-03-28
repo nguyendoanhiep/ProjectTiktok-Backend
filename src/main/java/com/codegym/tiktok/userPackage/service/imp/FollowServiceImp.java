@@ -31,6 +31,4 @@ public class FollowServiceImp implements FollowService {
     public List<Follow> findAllUserByFollowerId(long id) {
         return followRepo.findAllFollowerByUserId(id);
     }
-
-
 }

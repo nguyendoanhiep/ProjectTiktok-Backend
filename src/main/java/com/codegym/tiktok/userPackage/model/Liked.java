@@ -12,8 +12,8 @@ public class Liked {
     private Long id;
 
     @ManyToOne
-    private User likedUser;
+    private User user;
 
     @ManyToOne
-    private Posts likedPost;
+    private Posts posts;
 }

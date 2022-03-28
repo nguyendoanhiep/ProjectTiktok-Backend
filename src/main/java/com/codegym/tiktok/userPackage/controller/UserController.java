@@ -1,14 +1,8 @@
 package com.codegym.tiktok.userPackage.controller;
 
 import com.codegym.tiktok.userPackage.dto.Search;
-import com.codegym.tiktok.userPackage.model.Comment;
-import com.codegym.tiktok.userPackage.model.Follow;
-import com.codegym.tiktok.userPackage.model.Posts;
-import com.codegym.tiktok.userPackage.model.User;
-import com.codegym.tiktok.userPackage.service.CommentService;
-import com.codegym.tiktok.userPackage.service.FollowService;
-import com.codegym.tiktok.userPackage.service.PostService;
-import com.codegym.tiktok.userPackage.service.UserService;
+import com.codegym.tiktok.userPackage.model.*;
+import com.codegym.tiktok.userPackage.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,6 +28,9 @@ public class UserController {
 
     @Autowired
     FollowService followService;
+
+    @Autowired
+    LikedService likedService;
 
 
     @GetMapping("/home/{page}")
@@ -131,4 +128,20 @@ public class UserController {
     }
 
 
+    @PostMapping("/new/like")
+    public  ResponseEntity saveLike(@RequestBody Liked liked){
+        likedService.save(liked);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/unlike/{postsId}/{userId}")
+    public ResponseEntity unLike(@PathVariable Long postsId ,@PathVariable  Long userId){
+        likedService.unlike(postsId,userId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping("/show/like/{id}")
+    public ResponseEntity<List<Liked>> showLike(@PathVariable Long id){
+        return new ResponseEntity(likedService.findAllUserByPost_id(id),HttpStatus.OK);
+    }
 }
